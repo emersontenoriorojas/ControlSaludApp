@@ -1,0 +1,116 @@
+﻿@{ 
+    ViewBag.Title = "Index";
+}
+
+<div class="jumbotron  mg-t-10">
+    <div class="container mg-tb-30">
+        <h1>Suplementacion</h1>
+        <hr class="my-1"/>
+        <p class="lead">Buscar por ...</p>
+        <form>
+
+            <div class="form-group">
+
+                <!-- #region Buscar por Apellidos -->
+                <div class="form-row mb-2 align-items-center">
+                    <div class="col-lg-3">
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" checked="">
+                            <label class="custom-control-label" for="customRadio1">Apellidos</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="form-row">
+                            <div class="col-6">
+                                <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="Apellido Paterno">
+                            </div>
+                            <div class="col-6">
+                                <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="Apellido Materno">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- #endregion -->
+
+                <!-- #region Buscar por Dni -->
+                <div class="form-row mb-2 align-items-center">
+                    <div class="col-lg-3">
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+                            <label class="custom-control-label" for="customRadio2">Dni</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="form-row">
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="Ingrese un numero de dni">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- #endregion -->
+
+                <!-- #region Buscar Establecimiento -->
+                <div class="form-row mb-2 align-items-center">
+                    <div class="col-lg-3">
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
+                            <label class="custom-control-label" for="customRadio3">Establecimiento</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="form-row">
+                            <!-- #region Combo Seccion -->
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <select class="custom-select">
+                                        <option selected="">Red</option>
+                                        <option value="1">Ica - Chincha - Pisco</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <select class="custom-select">
+                                        <option selected="">Micro red</option>
+                                        <option value="1">San Joaquin</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <select class="custom-select">
+                                        <option selected="">Establecimiento</option>
+                                        <option value="1">Santa Maria del Socorro</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- #endregion -->
+                        </div>
+                    </div>
+                </div>
+                <!-- #endregion -->
+
+                <!-- #region Botones de Busqueda -->
+                <div class="form-row">
+                    <div class="col-lg-6">
+                        <button class="btn btn-block btn-outline-warning btn-lg mb-sm-2" type="button">SEGUIMIENTO</button>
+                    </div>
+                    <div class="col-lg-6">
+                        <button class="btn btn-block btn-outline-danger btn-lg" type="button">INASISTENCIAS</button>
+                    </div>
+                </div>
+                <!-- #endregion -->
+
+            </div>
+
+        </form>
+    </div>
+</div>
