@@ -1,21 +1,38 @@
-﻿<!DOCTYPE html>
+﻿@{
+    ViewBag.Title = "Index";
+
+    if (Session["usuario"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <title>Control Salud - @ViewBag.Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link href="~/Resource/iconApp.ico" rel="shortcut icon"  type="image/x-icon"/>
+    <link href="~/Resource/iconApp.ico" rel="shortcut icon" type="image/x-icon" />
     @Styles.Render("~/bundles/css")
 </head>
 <body>
+
+    <!-- #region Barrra Superior -->
     <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
         <div class="container">
             <img src="~/Resource/IconApp.png" alt="Alternate Text" />
+            <form class="form-inline my-2">
+                <img style="width: 25px" src="~/Resource/icons8-person-48.png" alt="Alternate Text" />
+                <label class="text-white ml-2" id="lblUsuario">Tenorio Rojas Emerson</label>
+                <button type="button" class="btn font-weight-bold btn-outline-light ml-3">SALIR</button>
+            </form>
         </div>
     </div>
+    <!-- #endregion -->
 
     <div class="container mg-tb-30">
+        <!-- #region Tab de Navegacion -->
         <div class="bs-component">
             <ul class=" nav nav-tabs flex-column flex-sm-row">
                 <li class="nav-item">
@@ -64,6 +81,8 @@
                 </div>
             </div>
         </div>
+        <!-- #endregion -->
+
 
         @RenderBody()
 
@@ -89,8 +108,8 @@
         </footer>
     </div>
     @Scripts.Render("~/bundles/js")
-    <script src="~/Content/js/jquery.min.js"></script>
-    <script src="~/Content/js/bootstrap.min.js"></script>
+    @*<script src="~/Content/js/jquery.min.js"></script>
+        <script src="~/Content/js/bootstrap.min.js"></script>*@
     @*<script src="~/Content/js/custom.js"></script>*@
 </body>
 </html>

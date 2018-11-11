@@ -23,11 +23,12 @@ namespace ControlSaludApp
 
             bundles.Add(new ScriptBundle("~/bundles/js")
             .Include(
-            "~/Content/js/bootstrap.min.js",
-            "~/Content/js/custom.js",
-            "~/Content/js/jquery.min.js",
-            "~/Content/js/popper.min.js"
-            ));
+                    "~/Content/js/bootstrap.min.js",
+                    "~/Content/js/custom.js",
+                    "~/Content/js/jquery.min.js",
+                    "~/Content/js/popper.min.js",
+                    "~/Content/js/bootstrap.bundle.js"
+                    ));
 
 
         }

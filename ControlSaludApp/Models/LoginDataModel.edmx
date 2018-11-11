@@ -1,0 +1,334 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DIRESAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DIRESA.dbo.trabajador' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="trabajador">
+          <Key>
+            <PropertyRef Name="nombre" />
+            <PropertyRef Name="apellidos" />
+            <PropertyRef Name="sexo" />
+            <PropertyRef Name="fech_nac" />
+            <PropertyRef Name="DNI" />
+            <PropertyRef Name="acceso" />
+            <PropertyRef Name="usuario" />
+            <PropertyRef Name="contraseña" />
+          </Key>
+          <Property Name="nombre" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="apellidos" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="sexo" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="fech_nac" Type="date" Nullable="false" />
+          <Property Name="DNI" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="direccion" Type="varchar" MaxLength="100" />
+          <Property Name="telefono" Type="varchar" MaxLength="10" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="establecimiento" Type="varchar" MaxLength="30" />
+          <Property Name="acceso" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="usuario" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="contraseña" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <Function Name="spbuscar_apellidos_trabajador" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="textobuscar" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spbuscar_DNI_trabajador" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="textobuscar" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="speditar_trabajador" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="apellidos" Type="varchar" Mode="In" />
+          <Parameter Name="sexo" Type="varchar" Mode="In" />
+          <Parameter Name="fecha_nacimiento" Type="date" Mode="In" />
+          <Parameter Name="num_documento" Type="varchar" Mode="In" />
+          <Parameter Name="direccion" Type="varchar" Mode="In" />
+          <Parameter Name="telefono" Type="varchar" Mode="In" />
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="acceso" Type="varchar" Mode="In" />
+          <Parameter Name="usuario" Type="varchar" Mode="In" />
+          <Parameter Name="pass" Type="varchar" Mode="In" />
+          <Parameter Name="establecimiento" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="speliminar_trabajador" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="num_documento" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spinsertar_trabajador" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="apellidos" Type="varchar" Mode="In" />
+          <Parameter Name="sexo" Type="varchar" Mode="In" />
+          <Parameter Name="fecha_nacimiento" Type="date" Mode="In" />
+          <Parameter Name="num_documento" Type="varchar" Mode="In" />
+          <Parameter Name="direccion" Type="varchar" Mode="In" />
+          <Parameter Name="telefono" Type="varchar" Mode="In" />
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="acceso" Type="varchar" Mode="In" />
+          <Parameter Name="usuario" Type="varchar" Mode="In" />
+          <Parameter Name="pass" Type="varchar" Mode="In" />
+          <Parameter Name="establecimiento" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="splogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="usuario" Type="varchar" Mode="In" />
+          <Parameter Name="pass" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spmostrar_trabajador" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="DIRESAModelStoreContainer">
+          <EntitySet Name="trabajador" EntityType="Self.trabajador" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [trabajador].[nombre] AS [nombre], 
+    [trabajador].[apellidos] AS [apellidos], 
+    [trabajador].[sexo] AS [sexo], 
+    [trabajador].[fech_nac] AS [fech_nac], 
+    [trabajador].[DNI] AS [DNI], 
+    [trabajador].[direccion] AS [direccion], 
+    [trabajador].[telefono] AS [telefono], 
+    [trabajador].[email] AS [email], 
+    [trabajador].[establecimiento] AS [establecimiento], 
+    [trabajador].[acceso] AS [acceso], 
+    [trabajador].[usuario] AS [usuario], 
+    [trabajador].[contraseña] AS [contraseña]
+    FROM [dbo].[trabajador] AS [trabajador]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DIRESAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="trabajador">
+          <Key>
+            <PropertyRef Name="nombre" />
+            <PropertyRef Name="apellidos" />
+            <PropertyRef Name="sexo" />
+            <PropertyRef Name="fech_nac" />
+            <PropertyRef Name="DNI" />
+            <PropertyRef Name="acceso" />
+            <PropertyRef Name="usuario" />
+            <PropertyRef Name="contraseña" />
+          </Key>
+          <Property Name="nombre" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellidos" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sexo" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fech_nac" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DNI" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="establecimiento" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="acceso" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuario" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contraseña" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="DIRESAEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="trabajadors" EntityType="Self.trabajador" />
+          <FunctionImport Name="spbuscar_apellidos_trabajador" ReturnType="Collection(DIRESAModel.spbuscar_apellidos_trabajador_Result)">
+            <Parameter Name="textobuscar" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spbuscar_DNI_trabajador" ReturnType="Collection(DIRESAModel.spbuscar_DNI_trabajador_Result)">
+            <Parameter Name="textobuscar" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="speditar_trabajador">
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="apellidos" Mode="In" Type="String" />
+            <Parameter Name="sexo" Mode="In" Type="String" />
+            <Parameter Name="fecha_nacimiento" Mode="In" Type="DateTime" />
+            <Parameter Name="num_documento" Mode="In" Type="String" />
+            <Parameter Name="direccion" Mode="In" Type="String" />
+            <Parameter Name="telefono" Mode="In" Type="String" />
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="acceso" Mode="In" Type="String" />
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="pass" Mode="In" Type="String" />
+            <Parameter Name="establecimiento" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="speliminar_trabajador">
+            <Parameter Name="num_documento" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spinsertar_trabajador">
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="apellidos" Mode="In" Type="String" />
+            <Parameter Name="sexo" Mode="In" Type="String" />
+            <Parameter Name="fecha_nacimiento" Mode="In" Type="DateTime" />
+            <Parameter Name="num_documento" Mode="In" Type="String" />
+            <Parameter Name="direccion" Mode="In" Type="String" />
+            <Parameter Name="telefono" Mode="In" Type="String" />
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="acceso" Mode="In" Type="String" />
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="pass" Mode="In" Type="String" />
+            <Parameter Name="establecimiento" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="splogin" ReturnType="Collection(DIRESAModel.splogin_Result)">
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="pass" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spmostrar_trabajador" ReturnType="Collection(DIRESAModel.spmostrar_trabajador_Result)" />
+        </EntityContainer>
+        <ComplexType Name="spbuscar_apellidos_trabajador_Result">
+          <Property Type="String" Name="NOMBRES" Nullable="false" MaxLength="70" />
+          <Property Type="String" Name="APELLIDOS" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="SEXO" Nullable="false" MaxLength="1" />
+          <Property Type="DateTime" Name="FECHA_DE_NACIMIENTO" Nullable="false" />
+          <Property Type="String" Name="DNI" Nullable="false" MaxLength="8" />
+          <Property Type="String" Name="DIRECCION" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="TELEFONO" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="EMAIL" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ESTABLECIMIENTO" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="ACCESO" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="USUARIO" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="CONTRASEÑA" Nullable="false" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="spbuscar_DNI_trabajador_Result">
+          <Property Type="String" Name="NOMBRES" Nullable="false" MaxLength="70" />
+          <Property Type="String" Name="APELLIDOS" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="SEXO" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="FECHA_DE_NACIMIENTO" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="DNI" Nullable="false" MaxLength="8" />
+          <Property Type="String" Name="DIRECCION" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="TELEFONO" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="EMAIL" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ESTABLECIMIENTO" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="ACCESO" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="USUARIO" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="CONTRASEÑA" Nullable="false" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="splogin_Result">
+          <Property Type="String" Name="DNI" Nullable="false" MaxLength="8" />
+          <Property Type="String" Name="apellidos" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="70" />
+          <Property Type="String" Name="Acceso" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="establecimiento" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="email" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="spmostrar_trabajador_Result">
+          <Property Type="String" Name="NOMBRES" Nullable="false" MaxLength="70" />
+          <Property Type="String" Name="APELLIDOS" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="SEXO" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="FECHA_DE_NACIMIENTO" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="DNI" Nullable="false" MaxLength="8" />
+          <Property Type="String" Name="DIRECCION" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="TELEFONO" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="EMAIL" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ESTABLECIMIENTO" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="ACCESO" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="USUARIO" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="CONTRASEÑA" Nullable="false" MaxLength="20" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DIRESAModelStoreContainer" CdmEntityContainer="DIRESAEntities">
+          <EntitySetMapping Name="trabajadors">
+            <EntityTypeMapping TypeName="DIRESAModel.trabajador">
+              <MappingFragment StoreEntitySet="trabajador">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="sexo" ColumnName="sexo" />
+                <ScalarProperty Name="fech_nac" ColumnName="fech_nac" />
+                <ScalarProperty Name="DNI" ColumnName="DNI" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="establecimiento" ColumnName="establecimiento" />
+                <ScalarProperty Name="acceso" ColumnName="acceso" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="contraseña" ColumnName="contraseña" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spbuscar_apellidos_trabajador" FunctionName="DIRESAModel.Store.spbuscar_apellidos_trabajador">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DIRESAModel.spbuscar_apellidos_trabajador_Result">
+                <ScalarProperty Name="NOMBRES" ColumnName="NOMBRES" />
+                <ScalarProperty Name="APELLIDOS" ColumnName="APELLIDOS" />
+                <ScalarProperty Name="SEXO" ColumnName="SEXO" />
+                <ScalarProperty Name="FECHA_DE_NACIMIENTO" ColumnName="FECHA DE NACIMIENTO" />
+                <ScalarProperty Name="DNI" ColumnName="DNI" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="ESTABLECIMIENTO" ColumnName="ESTABLECIMIENTO" />
+                <ScalarProperty Name="ACCESO" ColumnName="ACCESO" />
+                <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
+                <ScalarProperty Name="CONTRASEÑA" ColumnName="CONTRASEÑA" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spbuscar_DNI_trabajador" FunctionName="DIRESAModel.Store.spbuscar_DNI_trabajador">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DIRESAModel.spbuscar_DNI_trabajador_Result">
+                <ScalarProperty Name="NOMBRES" ColumnName="NOMBRES" />
+                <ScalarProperty Name="APELLIDOS" ColumnName="APELLIDOS" />
+                <ScalarProperty Name="SEXO" ColumnName="SEXO" />
+                <ScalarProperty Name="FECHA_DE_NACIMIENTO" ColumnName="FECHA DE NACIMIENTO" />
+                <ScalarProperty Name="DNI" ColumnName="DNI" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="ESTABLECIMIENTO" ColumnName="ESTABLECIMIENTO" />
+                <ScalarProperty Name="ACCESO" ColumnName="ACCESO" />
+                <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
+                <ScalarProperty Name="CONTRASEÑA" ColumnName="CONTRASEÑA" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="speditar_trabajador" FunctionName="DIRESAModel.Store.speditar_trabajador" />
+          <FunctionImportMapping FunctionImportName="speliminar_trabajador" FunctionName="DIRESAModel.Store.speliminar_trabajador" />
+          <FunctionImportMapping FunctionImportName="spinsertar_trabajador" FunctionName="DIRESAModel.Store.spinsertar_trabajador" />
+          <FunctionImportMapping FunctionImportName="splogin" FunctionName="DIRESAModel.Store.splogin">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DIRESAModel.splogin_Result">
+                <ScalarProperty Name="DNI" ColumnName="DNI" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="Acceso" ColumnName="Acceso" />
+                <ScalarProperty Name="establecimiento" ColumnName="establecimiento" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spmostrar_trabajador" FunctionName="DIRESAModel.Store.spmostrar_trabajador">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DIRESAModel.spmostrar_trabajador_Result">
+                <ScalarProperty Name="NOMBRES" ColumnName="NOMBRES" />
+                <ScalarProperty Name="APELLIDOS" ColumnName="APELLIDOS" />
+                <ScalarProperty Name="SEXO" ColumnName="SEXO" />
+                <ScalarProperty Name="FECHA_DE_NACIMIENTO" ColumnName="FECHA DE NACIMIENTO" />
+                <ScalarProperty Name="DNI" ColumnName="DNI" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="ESTABLECIMIENTO" ColumnName="ESTABLECIMIENTO" />
+                <ScalarProperty Name="ACCESO" ColumnName="ACCESO" />
+                <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
+                <ScalarProperty Name="CONTRASEÑA" ColumnName="CONTRASEÑA" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

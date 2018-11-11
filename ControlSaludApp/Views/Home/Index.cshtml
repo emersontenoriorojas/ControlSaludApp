@@ -1,20 +1,25 @@
 ﻿@{ 
     ViewBag.Title = "Index";
+
+    //if (Session["usuario"] == null)
+    //{
+    //    Response.Redirect("~/Login/Index");
+    //}
 }
 
 <div class="jumbotron  mg-t-10">
     <div class="container mg-tb-30">
         <h1>Suplementacion</h1>
-        <hr class="my-1"/>
+        <hr class="my-1" />
         <p class="lead">Buscar por ...</p>
+
         <form>
 
             <div class="form-group">
-
                 <!-- #region Buscar por Apellidos -->
                 <div class="form-row mb-2 align-items-center">
                     <div class="col-lg-3">
-                        <div class="custom-control custom-radio">
+                        <div class="custom-control custom-radio mb-sm-2">
                             <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" checked="">
                             <label class="custom-control-label" for="customRadio1">Apellidos</label>
                         </div>
@@ -31,11 +36,10 @@
                     </div>
                 </div>
                 <!-- #endregion -->
-
                 <!-- #region Buscar por Dni -->
                 <div class="form-row mb-2 align-items-center">
                     <div class="col-lg-3">
-                        <div class="custom-control custom-radio">
+                        <div class="custom-control custom-radio mb-sm-2">
                             <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
                             <label class="custom-control-label" for="customRadio2">Dni</label>
                         </div>
@@ -50,11 +54,10 @@
                     </div>
                 </div>
                 <!-- #endregion -->
-
                 <!-- #region Buscar Establecimiento -->
                 <div class="form-row mb-2 align-items-center">
                     <div class="col-lg-3">
-                        <div class="custom-control custom-radio">
+                        <div class="custom-control custom-radio mb-sm-2">
                             <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
                             <label class="custom-control-label" for="customRadio3">Establecimiento</label>
                         </div>
@@ -97,7 +100,6 @@
                     </div>
                 </div>
                 <!-- #endregion -->
-
                 <!-- #region Botones de Busqueda -->
                 <div class="form-row">
                     <div class="col-lg-6">
@@ -108,9 +110,35 @@
                     </div>
                 </div>
                 <!-- #endregion -->
-
             </div>
 
         </form>
+        
+        <hr class="my-2"/>
+
+        <!-- #region Tabla -->
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Dni</th>
+                    <th scope="col">APellido Paterno</th>
+                    <th scope="col">Apellido Materno</th>
+                    <th scope="col">Nombres</th>
+                    <th scope="col">Fecha de Nacimiento</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">70199122</th>
+                    <td>Tenorio</td>
+                    <td>Rojas</td>
+                    <td>Emerson</td>
+                    <td>06/04/1996</td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- #endregion -->
+
+
     </div>
 </div>

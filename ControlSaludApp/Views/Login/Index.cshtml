@@ -1,4 +1,4 @@
-﻿
+﻿@model ControlSaludApp.Models.trabajador
 @{
     Layout = null;
 }
@@ -7,11 +7,27 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <meta charset="utf-8">
+    <title>Control Salud - Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link href="~/Resource/iconApp.ico" rel="shortcut icon" type="image/x-icon" />
+    @Styles.Render("~/bundles/css")
 </head>
-<body>
-    <div> 
-    </div>
+<body class="text-center background-Login">
+    @using (Html.BeginForm("Authorize", "Login", FormMethod.Post, new { @class = "form-signin jumbotron" }))
+    {
+        <img class="mb-4" src="~/Resource/ControlSalud.png" />
+        <h3>Inicio de Sesion</h3>
+        @Html.TextBoxFor(model => model.usuario, new { @class = "form-control mb-2", placeholder = "Usuario", id = "txtUsername", required = "required" })
+        @Html.TextBoxFor(model => model.contraseña, new { @class = "form-control mb-2", placeholder = "Contraseña", @type = "password", id = "txtPassword", required = "required" })
+        <button type="submit" class="btn btn-primary btn-block btn-lg mt-3">Ingresar</button>
+        <label class="text-danger">@Html.DisplayFor(model => model.LoginErrorMessagge)</label>
+
+    }
+
+    @Scripts.Render("~/bundles/js")
+    @*<script src="~/Content/js/jquery.min.js"></script>
+        <script src="~/Content/js/bootstrap.min.js"></script>*@
 </body>
 </html>
