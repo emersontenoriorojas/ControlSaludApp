@@ -21,7 +21,7 @@
         <h3>Inicio de Sesion</h3>
         @Html.TextBoxFor(model => model.usuario, new { @class = "form-control mb-2", placeholder = "Usuario", id = "txtUsername", required = "required" })
         @Html.TextBoxFor(model => model.contraseña, new { @class = "form-control mb-2", placeholder = "Contraseña", @type = "password", id = "txtPassword", required = "required" })
-        <button type="submit" class="btn btn-primary btn-block btn-lg mt-3">Ingresar</button>
+        <button type="submit" class="btn btn-primary btn-block btn-lg mt-3 mb-3">Ingresar</button>
         <label class="text-danger">@Html.DisplayFor(model => model.LoginErrorMessagge)</label>
 
     }

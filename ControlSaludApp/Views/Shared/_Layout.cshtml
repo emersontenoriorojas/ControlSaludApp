@@ -1,11 +1,12 @@
 ﻿@{
     ViewBag.Title = "Index";
 
-    if (Session["usuario"] == null)
-    {
-        Response.Redirect("~/Login/Index");
-    }
+    //if (Session["usuario"] == null)
+    //{
+    //    Response.Redirect("~/Login/Index");
+    //}
 }
+@model ControlSaludApp.Models.trabajador
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,8 +25,11 @@
             <img src="~/Resource/IconApp.png" alt="Alternate Text" />
             <form class="form-inline my-2">
                 <img style="width: 25px" src="~/Resource/icons8-person-48.png" alt="Alternate Text" />
-                <label class="text-white ml-2" id="lblUsuario">Tenorio Rojas Emerson</label>
-                <button type="button" class="btn font-weight-bold btn-outline-light ml-3">SALIR</button>
+                <label class="text-white ml-2">@Html.DisplayFor(model => model.usuario)</label>
+                <label class="text-danger">@Html.DisplayFor(model => model.LoginErrorMessagge)</label>
+                <a href=@Url.Action("LogOut", "Login")>
+                    <button type="button" class="btn font-weight-bold btn-outline-light ml-3">SALIR</button>
+                </a>
             </form>
         </div>
     </div>

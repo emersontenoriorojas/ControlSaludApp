@@ -14,24 +14,31 @@ namespace ControlSaludApp.Controllers
         }
 
         [HttpPost]
+        //[ValidateAntiForgeryToken]
         public ActionResult Authorize(trabajador trabajadorModel)
         {
             using (DIRESAEntities db = new DIRESAEntities())
             {
-                var userDetails = db.trabajadors.Where(x => x.usuario == trabajadorModel.usuario && x.contraseña == trabajadorModel.contraseña);
+                var userDetails = db.trabajadors.Where(x => x.usuario == trabajadorModel.usuario && x.contraseña == trabajadorModel.contraseña).FirstOrDefault();
                 if (userDetails == null)
                 {
-                    Session["nombre"] = trabajadorModel.nombre;
-                    Session["apellidos"] = trabajadorModel.apellidos;
-                    return RedirectToAction("Index", "Home");
+                    trabajadorModel.LoginErrorMessagge = "Usuario o contraseña no valido";
+                    return View("Index", trabajadorModel);
                 }
                 else
-                {              
-                    trabajadorModel.LoginErrorMessagge = "Usuario o contraseña no valido";
-                    return View("Index");
+                {
+                    Session["DNI"] = userDetails.DNI;
+                    Session["usuario"] = userDetails.usuario;
+                    return RedirectToAction("Index", "Home");
                 }
             }
         }
 
+        public ActionResult LogOut()
+        {
+            //int dniUser = (int)Session["DNI"];
+            Session.Abandon();
+            return RedirectToAction("Index", "Login");
+        }
     }
 }

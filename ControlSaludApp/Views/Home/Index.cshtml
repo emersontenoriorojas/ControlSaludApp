@@ -1,10 +1,10 @@
 ﻿@{ 
     ViewBag.Title = "Index";
 
-    //if (Session["usuario"] == null)
-    //{
-    //    Response.Redirect("~/Login/Index");
-    //}
+    if (Session["DNI"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
 }
 
 <div class="jumbotron  mg-t-10">

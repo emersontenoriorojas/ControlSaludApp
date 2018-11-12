@@ -9750,5 +9750,6 @@ legend {
 
 .background-Login{
     background-image: url(../../Resource/bg.jpg);
-    
+    background-repeat: no-repeat;
+    background-size: cover;
 }
