@@ -13,6 +13,8 @@ namespace ControlSaludApp.Controllers
             return View();
         }
 
+
+
         [HttpPost]
         //[ValidateAntiForgeryToken]
         public ActionResult Authorize(trabajador trabajadorModel)
@@ -29,6 +31,9 @@ namespace ControlSaludApp.Controllers
                 {
                     Session["DNI"] = userDetails.DNI;
                     Session["usuario"] = userDetails.usuario;
+                    Session["apellidos"] = userDetails.apellidos;
+                    Session["nombre"] = userDetails.nombre;
+                    Session["acceso"] = userDetails.acceso;
                     return RedirectToAction("Index", "Home");
                 }
             }

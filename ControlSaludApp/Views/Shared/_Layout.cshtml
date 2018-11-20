@@ -1,12 +1,21 @@
-﻿@{
-    ViewBag.Title = "Index";
+﻿@model ControlSaludApp.Models.trabajador
+@{
+    string access = "";
+    if (Session["acceso"] != null)
+    {
 
-    //if (Session["usuario"] == null)
-    //{
-    //    Response.Redirect("~/Login/Index");
-    //}
+        if (Session["acceso"].ToString() != "DESARROLLADOR")
+        {
+            access = "d-none";
+        }
+        else
+        {
+            access = "";
+        }
+    }
 }
-@model ControlSaludApp.Models.trabajador
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,11 +31,11 @@
     <!-- #region Barrra Superior -->
     <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
         <div class="container">
-            <img src="~/Resource/IconApp.png" alt="Alternate Text" />
+            <a href=@Url.Action("Index", "Home")><img src="~/Resource/IconApp.png" alt="Alternate Text" /></a>
             <form class="form-inline my-2">
                 <img style="width: 25px" src="~/Resource/icons8-person-48.png" alt="Alternate Text" />
                 <label class="text-white ml-2">@Html.DisplayFor(model => model.usuario)</label>
-                <label class="text-danger">@Html.DisplayFor(model => model.LoginErrorMessagge)</label>
+                <label class="text-white">Usuario: @Session["nombre"].ToString() @Session["apellidos"].ToString()</label>
                 <a href=@Url.Action("LogOut", "Login")>
                     <button type="button" class="btn font-weight-bold btn-outline-light ml-3">SALIR</button>
                 </a>
@@ -49,6 +58,9 @@
                     <a href="#historial" class="nav-link" data-toggle="tab">Historial</a>
                 </li>
                 <li>
+                    <a href=@Url.Action("Usuarios", "Home") class="@access nav-link">Usuarios</a>
+                </li>
+                <li>
                     <a href="#estadisticas" class="nav-link" data-toggle="tab">Estadisticas</a>
                 </li>
                 <li>
@@ -60,12 +72,13 @@
             </ul>
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane fade active show" id="inicio">
-                    <button type="button" class="btn btn-outline-light">OPCION 1</button>
-                    <button type="button" class="btn btn-outline-light">OPCION 2</button>
-                    <button type="button" class="btn btn-outline-light">OPCION 3</button>
                 </div>
                 <div class="tab-pane fade" id="seguimiento">
-                    <button type="button" class="btn btn-outline-warning">SUPLEMENTACION</button>
+                    <a href=@Url.Action("Index", "Seguimiento")>
+                        <button type="button" class="btn btn-outline-warning">
+                            SUPLEMENTACION
+                        </button>
+                    </a>
                     <button type="button" class="btn btn-outline-warning">CRED</button>
                     <button type="button" class="btn btn-outline-warning">VACUNAS</button>
                 </div>
@@ -80,6 +93,8 @@
                     <button type="button" class="btn btn-outline-success">LEVE</button>
                 </div>
                 <div class="tab-pane fade" id="sugerencias">
+                </div>
+                <div class="tab-pane fade" id="usuarios">
                 </div>
                 <div class="tab-pane fade" id="about">
                 </div>
@@ -112,8 +127,5 @@
         </footer>
     </div>
     @Scripts.Render("~/bundles/js")
-    @*<script src="~/Content/js/jquery.min.js"></script>
-        <script src="~/Content/js/bootstrap.min.js"></script>*@
-    @*<script src="~/Content/js/custom.js"></script>*@
 </body>
 </html>

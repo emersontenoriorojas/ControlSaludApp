@@ -12,6 +12,7 @@ namespace ControlSaludApp.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
 
     public partial class trabajador
     {
@@ -31,5 +32,16 @@ namespace ControlSaludApp.Models
         public string contraseña { get; set; }
 
         public string LoginErrorMessagge { get; set; }
+
+        public static IEnumerable<SelectListItem> Sexo()
+        {
+            IList<SelectListItem> items = new List<SelectListItem>
+            {
+                new SelectListItem {Text = "Sexo", Value= null},
+                new SelectListItem {Text = "Maculino", Value= "M"},
+                new SelectListItem {Text = "Femenino", Value= "F"}
+            };
+            return items;
+        }
     }
 }

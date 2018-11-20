@@ -1,0 +1,186 @@
+﻿@{
+    ViewBag.Title = "Seguimiento";
+
+    if (Session["DNI"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
+}
+@model ControlSaludApp.Models.Establecimiento
+@Scripts.Render("~/bundles/js")
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#Red").change(function () {
+            $("#Microred").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetMicrored")',
+                dataType: 'json',
+                data: { id: $("#Red").val() },
+
+                success: function (microred) {
+                    $.each(microred, function (i, microred) {
+                        $("#Microred").append('<option value="' + microred.Value + '">' + microred.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Error al obtener Microred ... ' + ex);
+                }
+            });
+            return false;
+        })
+    })
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#Microred").change(function () {
+            $("#Establecimiento").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetEstablecimiento")',
+                dataType: 'json',
+                data: { id: $("#Microred").val() },
+
+                success: function (microred) {
+                    $.each(microred, function (i, microred) {
+                        $("#Establecimiento").append('<option value="' + microred.Value + '">' + microred.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Error al obtener Establecimiento ... ' + ex);
+                }
+            });
+            return false;
+        })
+    })
+</script>
+
+@using (Html.BeginForm())
+{
+    <div class="jumbotron  mg-t-10">
+        <div class="container mg-tb-30">
+            <div class="row">
+                <div class="col-lg-6"><h1>Seguimiento</h1></div>
+                <div class="col-lg-6 float-right"><h2>Suplementacion</h2></div>
+
+
+            </div>
+
+            <hr class="my-1" />
+            <p class="lead">Buscar por ...</p>
+
+            <form>
+
+                <div class="form-group">
+                    <!-- #region Buscar por Apellidos -->
+                    <div class="form-row mb-2 align-items-center">
+                        <div class="col-lg-3">
+                            <div class="custom-control custom-radio mb-sm-2">
+                                <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" checked="">
+                                <label class="custom-control-label" for="customRadio1">Apellidos</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="form-row">
+                                <div class="col-6">
+                                    <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="Apellido Paterno">
+                                </div>
+                                <div class="col-6">
+                                    <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="Apellido Materno">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- #endregion -->
+                    <!-- #region Buscar por Dni -->
+                    <div class="form-row mb-2 align-items-center">
+                        <div class="col-lg-3">
+                            <div class="custom-control custom-radio mb-sm-2">
+                                <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+                                <label class="custom-control-label" for="customRadio2">Dni</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="form-row">
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="Ingrese un numero de dni">
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- #endregion -->
+                    <!-- #region Buscar Establecimiento -->
+                    <div class="form-row mb-2 align-items-center">
+                        <div class="col-lg-3">
+                            <div class="custom-control custom-radio mb-sm-2">
+                                <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
+                                <label class="custom-control-label" for="customRadio3">Establecimiento</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="form-row">
+                                <!-- #region Combo Seccion -->
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        @Html.DropDownList("Red", ViewData["red"] as List<SelectListItem>, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        @Html.DropDownList("Microred", new SelectList(string.Empty, "Value", "Text"), "Microred", new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        @Html.DropDownList("Establecimiento", new SelectList(string.Empty, "Value", "Text"), "Establecimiento", new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <!-- #endregion -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- #endregion -->
+                    <!-- #region Botones de Busqueda -->
+                    <div class="form-row">
+                        <div class="col-lg-6">
+                            <button class="btn btn-block btn-outline-warning btn-lg mb-sm-2" type="button">SEGUIMIENTO</button>
+                        </div>
+                        <div class="col-lg-6">
+                            <button class="btn btn-block btn-outline-danger btn-lg" type="button">INASISTENCIAS</button>
+                        </div>
+                    </div>
+                    <!-- #endregion -->
+                </div>
+
+            </form>
+
+            <hr class="my-2" />
+
+            <!-- #region Tabla -->
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Dni</th>
+                        <th scope="col">APellido Paterno</th>
+                        <th scope="col">Apellido Materno</th>
+                        <th scope="col">Nombres</th>
+                        <th scope="col">Fecha de Nacimiento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">70199122</th>
+                        <td>Tenorio</td>
+                        <td>Rojas</td>
+                        <td>Emerson</td>
+                        <td>06/04/1996</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- #endregion -->
+
+
+        </div>
+    </div>
+}
