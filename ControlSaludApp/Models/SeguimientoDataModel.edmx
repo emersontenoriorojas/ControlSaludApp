@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SeguimientoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="spSeguimientoCred" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="textobuscar2" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="SeguimientoModelStoreContainer" />
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SeguimientoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DIRESAEntities1" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="spSeguimientoCred" ReturnType="Collection(SeguimientoModel.spSeguimientoCred_Result)">
+            <Parameter Name="textobuscar2" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="spSeguimientoCred_Result">
+          <Property Type="String" Name="DNI" Nullable="true" MaxLength="8" />
+          <Property Type="String" Name="APELLIDO_PATERNO" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="APELLIDO_MATERNO" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NOMBRES_DEL_NIÑO" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="FECHA_DE_NACIMIENTO" Nullable="true" />
+          <Property Type="String" Name="EDAD____A_AÑOS____M_MESES____D_DIAS" Nullable="true" MaxLength="79" />
+          <Property Type="String" Name="TIPO_DE_SEGURO__DEL_BENEFICIARIO__1_SIS__2_ESSALUD__3_SANIDAD__4_PRIVADO__6_NINGUNO" Nullable="true" MaxLength="2" />
+          <Property Type="String" Name="PROGRAMAS_SOCIALES__DEL_NIÑO_A___1_PIN__2_PVL__3_CUNA____4_JUNTOS__5_OTROS__6_NINGUNO" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="NOMBRE_DE_CENTRO_POBLADO" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DIRECCION_DEL_MENOR" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Establecimiento_Ultimo_Control" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="UltimoControlCred" Nullable="true" MaxLength="48" />
+          <Property Type="String" Name="ProximoControlCred" Nullable="true" MaxLength="48" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SeguimientoModelStoreContainer" CdmEntityContainer="DIRESAEntities1" >
+          <FunctionImportMapping FunctionImportName="spSeguimientoCred" FunctionName="SeguimientoModel.Store.spSeguimientoCred">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SeguimientoModel.spSeguimientoCred_Result">
+                <ScalarProperty Name="DNI" ColumnName="DNI" />
+                <ScalarProperty Name="APELLIDO_PATERNO" ColumnName="APELLIDO PATERNO" />
+                <ScalarProperty Name="APELLIDO_MATERNO" ColumnName="APELLIDO MATERNO" />
+                <ScalarProperty Name="NOMBRES_DEL_NIÑO" ColumnName="NOMBRES DEL NIÑO" />
+                <ScalarProperty Name="FECHA_DE_NACIMIENTO" ColumnName="FECHA DE NACIMIENTO" />
+                <ScalarProperty Name="EDAD____A_AÑOS____M_MESES____D_DIAS" ColumnName="EDAD&#xD;&#xA;&#x9;&#x9;A=AÑOS&#xD;&#xA;&#x9;&#x9;M=MESES&#xD;&#xA;&#x9;&#x9;D=DIAS" />
+                <ScalarProperty Name="TIPO_DE_SEGURO__DEL_BENEFICIARIO__1_SIS__2_ESSALUD__3_SANIDAD__4_PRIVADO__6_NINGUNO" ColumnName="TIPO DE SEGURO&#xD;&#xA;DEL BENEFICIARIO&#xD;&#xA;1=SIS&#xD;&#xA;2=ESSALUD&#xD;&#xA;3=SANIDAD&#xD;&#xA;4=PRIVADO&#xD;&#xA;6=NINGUNO" />
+                <ScalarProperty Name="PROGRAMAS_SOCIALES__DEL_NIÑO_A___1_PIN__2_PVL__3_CUNA____4_JUNTOS__5_OTROS__6_NINGUNO" ColumnName="PROGRAMAS SOCIALES&#xD;&#xA;DEL NIÑO(A)&#xD;&#xA;1=PIN&#xD;&#xA;2=PVL&#xD;&#xA;3=CUNA +&#xD;&#xA;4=JUNTOS&#xD;&#xA;5=OTROS&#xD;&#xA;6=NINGUNO" />
+                <ScalarProperty Name="NOMBRE_DE_CENTRO_POBLADO" ColumnName="NOMBRE DE CENTRO POBLADO" />
+                <ScalarProperty Name="DIRECCION_DEL_MENOR" ColumnName="DIRECCION DEL MENOR" />
+                <ScalarProperty Name="Establecimiento_Ultimo_Control" ColumnName="Establecimiento_Ultimo_Control" />
+                <ScalarProperty Name="UltimoControlCred" ColumnName="UltimoControlCred" />
+                <ScalarProperty Name="ProximoControlCred" ColumnName="ProximoControlCred" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

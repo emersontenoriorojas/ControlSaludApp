@@ -11,9 +11,7 @@ namespace ControlSaludApp.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.Web.Mvc;
-
+    
     public partial class trabajador
     {
         public string nombre { get; set; }
@@ -26,22 +24,8 @@ namespace ControlSaludApp.Models
         public string email { get; set; }
         public string establecimiento { get; set; }
         public string acceso { get; set; }
-        [Required(ErrorMessage = "Ingrese el usuario")]
         public string usuario { get; set; }
-        [Required(ErrorMessage = "Ingrese la contraseña")]
         public string contraseña { get; set; }
-
-        public string LoginErrorMessagge { get; set; }
-
-        public static IEnumerable<SelectListItem> Sexo()
-        {
-            IList<SelectListItem> items = new List<SelectListItem>
-            {
-                new SelectListItem {Text = "Sexo", Value= null},
-                new SelectListItem {Text = "Maculino", Value= "M"},
-                new SelectListItem {Text = "Femenino", Value= "F"}
-            };
-            return items;
-        }
+        public string LoginErrorMessagge { get; internal set; }
     }
 }

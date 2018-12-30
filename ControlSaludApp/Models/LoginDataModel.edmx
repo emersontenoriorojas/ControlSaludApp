@@ -13,9 +13,9 @@ warning 6002: The table/view 'DIRESA.dbo.trabajador' does not have a primary key
             <PropertyRef Name="apellidos" />
             <PropertyRef Name="sexo" />
             <PropertyRef Name="fech_nac" />
-            <PropertyRef Name="DNI" />
             <PropertyRef Name="acceso" />
             <PropertyRef Name="usuario" />
+            <PropertyRef Name="DNI" />
             <PropertyRef Name="contraseña" />
           </Key>
           <Property Name="nombre" Type="varchar" MaxLength="70" Nullable="false" />
@@ -221,24 +221,6 @@ warning 6002: The table/view 'DIRESA.dbo.trabajador' does not have a primary key
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="DIRESAModelStoreContainer" CdmEntityContainer="DIRESAEntities">
-          <EntitySetMapping Name="trabajadors">
-            <EntityTypeMapping TypeName="DIRESAModel.trabajador">
-              <MappingFragment StoreEntitySet="trabajador">
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
-                <ScalarProperty Name="sexo" ColumnName="sexo" />
-                <ScalarProperty Name="fech_nac" ColumnName="fech_nac" />
-                <ScalarProperty Name="DNI" ColumnName="DNI" />
-                <ScalarProperty Name="direccion" ColumnName="direccion" />
-                <ScalarProperty Name="telefono" ColumnName="telefono" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="establecimiento" ColumnName="establecimiento" />
-                <ScalarProperty Name="acceso" ColumnName="acceso" />
-                <ScalarProperty Name="usuario" ColumnName="usuario" />
-                <ScalarProperty Name="contraseña" ColumnName="contraseña" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="spbuscar_apellidos_trabajador" FunctionName="DIRESAModel.Store.spbuscar_apellidos_trabajador">
             <ResultMapping>
               <ComplexTypeMapping TypeName="DIRESAModel.spbuscar_apellidos_trabajador_Result">
@@ -308,6 +290,24 @@ warning 6002: The table/view 'DIRESA.dbo.trabajador' does not have a primary key
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="trabajadors">
+            <EntityTypeMapping TypeName="IsTypeOf(DIRESAModel.trabajador)">
+              <MappingFragment StoreEntitySet="trabajador">
+                <ScalarProperty Name="contraseña" ColumnName="contraseña" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="acceso" ColumnName="acceso" />
+                <ScalarProperty Name="establecimiento" ColumnName="establecimiento" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="DNI" ColumnName="DNI" />
+                <ScalarProperty Name="fech_nac" ColumnName="fech_nac" />
+                <ScalarProperty Name="sexo" ColumnName="sexo" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

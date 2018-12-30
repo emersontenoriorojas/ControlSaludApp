@@ -118,6 +118,7 @@
     <Content Include="Content\js\bootstrap.js" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\custom.js" />
+    <Content Include="Content\js\JavaFunctions.js" />
     <Content Include="Content\js\jquery-3.3.1.js" />
     <Content Include="Content\js\jquery.min.js" />
     <Content Include="Content\js\popper.min.js" />
@@ -131,6 +132,16 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>LoginDataModel.edmx</DependentUpon>
       <LastGenOutput>LoginDataModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\SeguimientoDataModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SeguimientoDataModel.edmx</DependentUpon>
+      <LastGenOutput>SeguimientoDataModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\SeguimientoDataModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SeguimientoDataModel.edmx</DependentUpon>
+      <LastGenOutput>SeguimientoDataModel.cs</LastGenOutput>
     </Content>
     <Content Include="Resource\bg.jpg" />
     <Content Include="Resource\ControlSalud.png" />
@@ -148,7 +159,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Establecimiento.cs" />
     <Compile Include="Models\LoginDataModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -164,6 +174,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LoginDataModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\SeguimientoDataModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SeguimientoDataModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SeguimientoDataModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SeguimientoDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SeguimientoDataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SeguimientoDataModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\spbuscar_apellidos_trabajador_Result.cs">
       <DependentUpon>LoginDataModel.tt</DependentUpon>
     </Compile>
@@ -175,6 +200,9 @@
     </Compile>
     <Compile Include="Models\spmostrar_trabajador_Result.cs">
       <DependentUpon>LoginDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spSeguimientoCred_Result.cs">
+      <DependentUpon>SeguimientoDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\trabajador.cs">
       <DependentUpon>LoginDataModel.tt</DependentUpon>
@@ -189,6 +217,13 @@
     </EntityDeploy>
     <Content Include="Models\LoginDataModel.edmx.diagram">
       <DependentUpon>LoginDataModel.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\SeguimientoDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SeguimientoDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\SeguimientoDataModel.edmx.diagram">
+      <DependentUpon>SeguimientoDataModel.edmx</DependentUpon>
     </Content>
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />

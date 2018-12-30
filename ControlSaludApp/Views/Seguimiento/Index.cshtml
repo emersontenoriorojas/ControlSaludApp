@@ -1,4 +1,5 @@
-﻿@{
+﻿@*@model ControlSaludApp.Models.spSeguimientoCred_Result*@
+@{
     ViewBag.Title = "Seguimiento";
 
     if (Session["DNI"] == null)
@@ -6,9 +7,8 @@
         Response.Redirect("~/Login/Index");
     }
 }
-@model ControlSaludApp.Models.Establecimiento
 @Scripts.Render("~/bundles/js")
-<script type="text/javascript">
+<script>
     $(document).ready(function () {
         $("#Red").change(function () {
             $("#Microred").empty();
@@ -29,9 +29,8 @@
             });
             return false;
         })
-    })
-</script>
-<script type="text/javascript">
+})
+
     $(document).ready(function () {
         $("#Microred").change(function () {
             $("#Establecimiento").empty();
@@ -54,16 +53,32 @@
         })
     })
 </script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var tr;
+        $("#btnSeguimiento").on("click", function (eve) {
 
-@using (Html.BeginForm())
+            $.get("Seguimiento/Seguimiento", {}, function (data) {
+                var row;
+                $.each(data, function (i, v1) {
+                    row += "<tr><td>" + v1.DNI + "</td> <td>" + v1.APELLIDO_PATERNO + "</td> <td>" + v1.APELLIDO_MATERNO + "</td> <td>" + v1.UltimoControlCred + "</td></tr>"
+                });
+                $("#tableSeguimiento").append(row);
+            })
+        })
+
+
+
+    });
+</script>
+
+@using (Html.BeginForm("Seguimiento", "Seguimiento"))
 {
     <div class="jumbotron  mg-t-10">
         <div class="container mg-tb-30">
             <div class="row">
                 <div class="col-lg-6"><h1>Seguimiento</h1></div>
-                <div class="col-lg-6 float-right"><h2>Suplementacion</h2></div>
-
-
+                <div class="col-lg-6"><h2>Suplementacion</h2></div>
             </div>
 
             <hr class="my-1" />
@@ -82,7 +97,7 @@
                         </div>
                         <div class="col-lg-9">
                             <div class="form-row">
-                                <div class="col-6">
+                                <div class="col-6">                             
                                     <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="Apellido Paterno">
                                 </div>
                                 <div class="col-6">
@@ -111,6 +126,7 @@
                     </div>
                     <!-- #endregion -->
                     <!-- #region Buscar Establecimiento -->
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger"})
                     <div class="form-row mb-2 align-items-center">
                         <div class="col-lg-3">
                             <div class="custom-control custom-radio mb-sm-2">
@@ -133,7 +149,7 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        @Html.DropDownList("Establecimiento", new SelectList(string.Empty, "Value", "Text"), "Establecimiento", new { @class = "form-control" })
+                                        @Html.DropDownList("Establecimiento", new SelectList(string.Empty, "Value", "Text"), "Establecimiento", new { @id = "Establecimiento", @class = "form-control" })
                                     </div>
                                 </div>
                                 <!-- #endregion -->
@@ -144,11 +160,11 @@
                     <!-- #region Botones de Busqueda -->
                     <div class="form-row">
                         <div class="col-lg-6">
-                            <button class="btn btn-block btn-outline-warning btn-lg mb-sm-2" type="button">SEGUIMIENTO</button>
+                            <button id="btnSeguimiento" class="btn btn-block btn-outline-warning btn-lg mb-sm-2" type="button">Seguimiento</button>
                         </div>
                         <div class="col-lg-6">
-                            <button class="btn btn-block btn-outline-danger btn-lg" type="button">INASISTENCIAS</button>
-                        </div>
+                            <button id="btnInasistencias" class="btn btn-block btn-outline-danger btn-lg" type="submit">Inasitencias</button>
+</div>
                     </div>
                     <!-- #endregion -->
                 </div>
@@ -158,29 +174,40 @@
             <hr class="my-2" />
 
             <!-- #region Tabla -->
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">Dni</th>
-                        <th scope="col">APellido Paterno</th>
-                        <th scope="col">Apellido Materno</th>
-                        <th scope="col">Nombres</th>
-                        <th scope="col">Fecha de Nacimiento</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">70199122</th>
-                        <td>Tenorio</td>
-                        <td>Rojas</td>
-                        <td>Emerson</td>
-                        <td>06/04/1996</td>
-                    </tr>
-                </tbody>
-            </table>
+
+            <div class="container">
+                <table id="tableSeguimiento" class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>DNI</th>
+                            <th>APELLIDO_PATERNO</th>
+                            <th>APELLIDO_MATERNO</th>
+                            @*<th>NOMBRES_DEL_NIÑO</th>
+                                <th>FECHA_DE_NACIMIENTO</th>
+                                <th>EDAD</th>
+                                <th>TIPO_DE_SEGURO</th>
+                                <th>PROGRAMAS_SOCIALES</th>
+                                <th>CENTRO_POBLADO</th>
+                                <th>Establecimiento_Ultimo_Control</th>*@
+                            <th>UltimoControlCred</th>
+                            @*<th>ProximoControlCred</th>*@
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @*<tr>
+                                <th scope="row">70199122</th>
+                                <td>Tenorio</td>
+                                <td>Rojas</td>
+                                <td>Emerson</td>
+                                <td>06/04/1996</td>
+                            </tr>*@
+                    </tbody>
+                </table>
+            </div>
             <!-- #endregion -->
 
 
         </div>
     </div>
+
 }

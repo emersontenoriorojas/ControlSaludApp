@@ -7,7 +7,7 @@
     }
 }
 
-@using (Html.BeginForm())
+@using (Html.BeginForm(FormMethod.Post))
 {
     <div class="jumbotron  mg-t-10">
         <div class="container mg-tb-30">
@@ -67,13 +67,7 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="custom-control mb-sm-2">
-                                <div class="form-group">
-                                    <select class="custom-select">
-                                        <option selected="">Establecimiento</option>
-                                        <option value="1">Regional de Ica</option>
-                                        <option value="2">Santa Maria del Socorro</option>
-                                    </select>
-                                </div>
+                                @Html.TextBoxFor(model => model.establecimiento, new { @class = "form-control mb-2", placeholder = "Establecimiento" })
                             </div>
                         </div>
                     </div>
