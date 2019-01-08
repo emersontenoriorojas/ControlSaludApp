@@ -1,6 +1,6 @@
-﻿@model ControlSaludApp.Models.spSeguimientoCred_Result
+﻿@model ControlSaludApp.Models.CredViewModel
 @{
-    ViewBag.Title = "Seguimiento";
+    ViewBag.Title = "CRED";
 
     if (Session["DNI"] == null)
     {
@@ -58,7 +58,7 @@
             $("#btnSeguimiento").on("click", function (eve) {
                 if ($('#Establecimiento').val() != 0) {
                     $.ajax({
-                    url: "@Url.Action("GetSeguimientoP", "Seguimiento")",
+                    url: "@Url.Action("GetSeguimientoE", "Cred")",
                     data: { Establecimiento: $('#Establecimiento').val() },
                     type: "GET",
                     dataType: "json",
@@ -70,8 +70,22 @@
                     }
                 });
                 }
+                else if ($('#txtApePaterno').val() != null && $('#txtApeMaterno').val() != null) {
+                    $.ajax({
+                    url: "@Url.Action("GetSeguimientoA", "Cred")",
+                    data: { ApePaterno: $('#txtApePaterno').val(), ApeMaterno: $('#txtApeMaterno').val() },
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        loadData(data);
+                    },
+                    error: function () {
+                        alert("Datos no fueron encontrados.");
+                    }
+                });
+                }
                 else {
-                    alert("Ingrese un Establecimiento");
+                    alert("Ingrese datos en el formulario");
                 }
 
                 function loadData(data) {
@@ -99,13 +113,13 @@
         });
 </script>
 
-@using (Html.BeginForm("GetSeguimientoP", "Seguimiento"))
+@using (Html.BeginForm("Cred"))
 {
     <div class="jumbotron  mg-t-10">
         <div class="container mg-tb-30">
             <div class="row">
                 <div class="col-lg-6"><h1>Seguimiento</h1></div>
-                <div class="col-lg-6"><h2>Suplementacion</h2></div>
+                <div class="col-lg-6"><h2>CRED</h2></div>
             </div>
 
             <hr class="my-1" />

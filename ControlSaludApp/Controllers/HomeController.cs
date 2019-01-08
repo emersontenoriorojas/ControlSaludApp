@@ -18,12 +18,17 @@ namespace ControlSaludApp.Controllers
 
         public ActionResult Usuarios()
         {
+            List<SelectListItem> li = new List<SelectListItem>();
+            li.Add(new SelectListItem { Text = "M", Value = "M" });
+            li.Add(new SelectListItem { Text = "F", Value = "F" });
+            ViewData["sexo"] = li;
             return View();
         }
 
         [HttpPost]
         public ActionResult Usuarios(trabajador trabajador)
         {
+            
             // Metodo para obtener un trabajador e insertar en la base de datos
             return View();
         }

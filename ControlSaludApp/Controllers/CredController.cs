@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ControlSaludApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -6,32 +7,23 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Routing;
-using ControlSaludApp.Models;
 
 namespace ControlSaludApp.Controllers
 {
-    public class SeguimientoController : Controller
+    public class CredController : Controller
     {
-        spSeguimientoCred_Result spSeguimientoCred_Result = new spSeguimientoCred_Result();
-
-        // GET: Seguimiento
-        
+        // Cadena de conexion a database Global
+        string cadena = ConfigurationManager.ConnectionStrings["Cnn"].ConnectionString;
+        // GET: Cred
         public ActionResult Index()
         {
-                #region Lista de Redes
-                List<SelectListItem> li = new List<SelectListItem>();
-                li.Add(new SelectListItem { Text = "Red", Value = "0" });
-                li.Add(new SelectListItem { Text = "Ica - Palpa - Nazca", Value = "1" });
-                li.Add(new SelectListItem { Text = "Chincha - Pisco", Value = "2" });
-                ViewData["red"] = li;
-                #endregion
-
-                return View();
-        }
-
-        public ActionResult GetRed()
-        {
+            #region Lista de Redes
+            List<SelectListItem> li = new List<SelectListItem>();
+            li.Add(new SelectListItem { Text = "Red", Value = "0" });
+            li.Add(new SelectListItem { Text = "Ica - Palpa - Nazca", Value = "1" });
+            li.Add(new SelectListItem { Text = "Chincha - Pisco", Value = "2" });
+            ViewData["red"] = li;
+            #endregion
             return View();
         }
 
@@ -308,11 +300,10 @@ namespace ControlSaludApp.Controllers
 
         }
 
-
-        public ActionResult GetSeguimientoP(string Establecimiento)
+       
+        public ActionResult GetSeguimientoE(string Establecimiento)
         {
-            var cadena = ConfigurationManager.ConnectionStrings["Cnn"].ConnectionString;
-            List<spSeguimientoCred_Result> lista = new List<spSeguimientoCred_Result>();
+            List<CredViewModel> lista = new List<CredViewModel>();
             using (var cn = new SqlConnection(cadena))
             {
                 try
@@ -327,7 +318,7 @@ namespace ControlSaludApp.Controllers
 
                         while (drd.Read())
                         {
-                            var atenciones = new spSeguimientoCred_Result
+                            var atenciones = new CredViewModel
                             {
                                 DNI = drd.GetString(drd.GetOrdinal("DNI")),
                                 APELLIDO_PATERNO = drd.GetString(drd.GetOrdinal("APELLIDO PATERNO")),
@@ -360,10 +351,9 @@ namespace ControlSaludApp.Controllers
             return new JsonResult { Data = lista, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
-        public ActionResult GetInasistenciasP(string Establecimiento)
+        public ActionResult GetSeguimientoA(string ApePaterno, string ApeMaterno)
         {
-            var cadena = ConfigurationManager.ConnectionStrings["Cnn"].ConnectionString;
-            List<spSeguimientoCred_Result> lista = new List<spSeguimientoCred_Result>();
+            List<CredViewModel> lista = new List<CredViewModel>();
             using (var cn = new SqlConnection(cadena))
             {
                 try
@@ -371,14 +361,15 @@ namespace ControlSaludApp.Controllers
                     cn.Open();
                     using (var cmd = cn.CreateCommand())
                     {
-                        cmd.CommandText = "spSeguimientoInaCred";
+                        cmd.CommandText = "sp_NameCredWITH";
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@textobuscar2", Establecimiento);
+                        cmd.Parameters.AddWithValue("@textobuscar", ApePaterno);
+                        cmd.Parameters.AddWithValue("@textobuscar2", ApeMaterno);
                         var drd = cmd.ExecuteReader();
 
                         while (drd.Read())
                         {
-                            var atenciones = new spSeguimientoCred_Result
+                            var atenciones = new CredViewModel
                             {
                                 DNI = drd.GetString(drd.GetOrdinal("DNI")),
                                 APELLIDO_PATERNO = drd.GetString(drd.GetOrdinal("APELLIDO PATERNO")),
@@ -389,9 +380,8 @@ namespace ControlSaludApp.Controllers
                                 TIPO_DE_SEGURO = drd.GetString(drd.GetOrdinal("TIPO DE SEGURO")),
                                 PROGRAMAS_SOCIALES = drd.GetString(drd.GetOrdinal("PROGRAMA SOCIAL")),
                                 CENTRO_POBLADO = drd.GetString(drd.GetOrdinal("NOMBRE DE CENTRO POBLADO")),
-                                Establecimiento_Ultimo_Control = drd.GetString(drd.GetOrdinal("ESTABLECIMIENTO")),
-                                UltimoControlCred = drd.GetString(drd.GetOrdinal("UltimoControlCred")),
-                                ProximoControlCred = drd.GetString(drd.GetOrdinal("ProximoControlCred"))
+                                Establecimiento_Ultimo_Control = drd.GetString(drd.GetOrdinal("Establecimiento_Ultimo_Control")),
+                                UltimoControlCred = drd.GetString(drd.GetOrdinal("UltimoControlCred"))
                             };
                             lista.Add(atenciones);
                         }

@@ -10,10 +10,20 @@
 namespace ControlSaludApp.Models
 {
     using System;
+    using System.Collections;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public class spSeguimientoCred_Result
+    public class spSeguimientoCred_Result 
     {
+        //public List<spSeguimientoCred_Result> spSeguimientoCred_Results;
+
+        //public IEnumerator<spSeguimientoCred_Result> GetEnumerator()
+        //{
+        //    return spSeguimientoCred_Results.GetEnumerator();
+        //}
+
+        //IEnumerator IEnumerable.GetEnumerator() { return spSeguimientoCred_Results.GetEnumerator(); }
         public string DNI { get; set; }
         public string APELLIDO_PATERNO { get; set; }
         public string APELLIDO_MATERNO { get; set; }
@@ -28,5 +38,6 @@ namespace ControlSaludApp.Models
         public string UltimoControlCred { get; set; }
         public string ProximoControlCred { get; set; }
         public  string Establecimiento { get; set; }
+
     }
 }

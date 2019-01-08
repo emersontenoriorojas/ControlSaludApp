@@ -32,7 +32,7 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="custom-control mb-sm-2">
-                                    @Html.DropDownListFor(model => model.sexo, ControlSaludApp.Models.trabajador.Sexo(), new { @class = "form-control"})
+                                    @Html.DropDownList("sexo", ViewData["sexo"] as List<SelectListItem>,new { @class = "form-control"})
                             </div>
                         </div>
                     </div>

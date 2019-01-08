@@ -23,6 +23,7 @@
     <title>Control Salud - @ViewBag.Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" />
     <link href="~/Resource/iconApp.ico" rel="shortcut icon" type="image/x-icon" />
     @Styles.Render("~/bundles/css")
 </head>
@@ -46,58 +47,59 @@
 
     <div class="container mg-tb-30">
         <!-- #region Tab de Navegacion -->
-            <ul class=" nav nav-tabs flex-column flex-sm-row">
-                <li class="nav-item">
-                    <a href="#inicio" class="nav-link active show" data-toggle="tab">Inicio</a>
-                </li>
-                <li>
-                    <a href="#seguimiento" class="nav-link" data-toggle="tab">Seguimiento</a>
-                </li>
-                <li>
-                    <a href="#historial" class="nav-link" data-toggle="tab">Historial</a>
-                </li>
-                <li>
-                    <a href=@Url.Action("Usuarios", "Home") class="@access nav-link">Usuarios</a>
-                </li>
-                <li>
-                    <a href="#estadisticas" class="nav-link" data-toggle="tab">Estadisticas</a>
-                </li>
-                <li>
-                    <a href="#sugerencias" class="nav-link" data-toggle="tab">Sugerencias</a>
-                </li>
-                <li>
-                    <a href="#about" class="nav-link" data-toggle="tab">About</a>
-                </li>
-            </ul>
-            <div id="myTabContent" class="tab-content">
-                <div class="tab-pane fade active show" id="inicio">
-                </div>
-                <div class="tab-pane fade" id="seguimiento">
-                    <a href=@Url.Action("Index", "Seguimiento")>
-                        <button type="button" class="btn btn-outline-warning">
-                            SUPLEMENTACION
-                        </button>
-                    </a>
-                    <button type="button" class="btn btn-outline-warning">CRED</button>
-                    <button type="button" class="btn btn-outline-warning">VACUNAS</button>
-                </div>
-                <div class="tab-pane fade" id="historial">
-                    <button type="button" class="btn btn-outline-primary">SUPLEMENTACION</button>
-                    <button type="button" class="btn btn-outline-primary">CRED</button>
-                    <button type="button" class="btn btn-outline-primary">VACUNAS</button>
-                </div>
-                <div class="tab-pane fade" id="estadisticas">
-                    <button type="button" class="btn btn-outline-danger">CRITICO</button>
-                    <button type="button" class="btn btn-outline-warning">MODERADO</button>
-                    <button type="button" class="btn btn-outline-success">LEVE</button>
-                </div>
-                <div class="tab-pane fade" id="sugerencias">
-                </div>
-                <div class="tab-pane fade" id="usuarios">
-                </div>
-                <div class="tab-pane fade" id="about">
-                </div>
+        <ul class=" nav nav-tabs flex-column flex-sm-row">
+            <li class="nav-item">
+                <a href="#inicio" class="nav-link active show" data-toggle="tab">Inicio</a>
+            </li>
+            <li>
+                <a href="#suplementacion" class="nav-link" data-toggle="tab">Suplementacion</a>
+            </li>
+            <li>
+                <a href="#cred" class="nav-link" data-toggle="tab">CRED</a>
+            </li>
+            <li>
+                <a href="#vacunas" class="nav-link" data-toggle="tab">Vacunas</a>
+            </li>
+            <li>
+                <a href=@Url.Action("Usuarios", "Home") class="@access nav-link">Usuarios</a>
+            </li>
+            <li>
+                <a href="#estadisticas" class="nav-link" data-toggle="tab">Estadisticas</a>
+            </li>
+            <li>
+                <a href="#sugerencias" class="nav-link" data-toggle="tab">Sugerencias</a>
+            </li>
+            <li>
+                <a href="#about" class="nav-link" data-toggle="tab">About</a>
+            </li>
+        </ul>
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active show" id="inicio">
             </div>
+            <div class="tab-pane fade" id="suplementacion">
+                <a href=@Url.Action("Index", "Seguimiento")><button type="button" class="btn btn-outline-warning"><span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span>Seguimiento</button></a>
+                <button type="button" class="btn btn-outline-primary"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>Historial</button>
+            </div>
+            <div class="tab-pane fade" id="cred">
+                <a href="@Url.Action("Index", "Cred")"><button type="button" class="btn btn-outline-warning">Seguimiento</button></a>
+                <button type="button" class="btn btn-outline-primary">Historial</button>
+            </div>
+            <div class="tab-pane fade" id="vacunas">
+                <a href="@Url.Action("Index", "Vacunas")"><button type="button" class="btn btn-outline-warning">Seguimiento</button></a>
+                <button type="button" class="btn btn-outline-primary">Historial</button>
+            </div>
+            <div class="tab-pane fade" id="estadisticas">
+                <button type="button" class="btn btn-outline-danger">CRITICO</button>
+                <button type="button" class="btn btn-outline-warning">MODERADO</button>
+                <button type="button" class="btn btn-outline-success">LEVE</button>
+            </div>
+            <div class="tab-pane fade" id="sugerencias">
+            </div>
+            <div class="tab-pane fade" id="usuarios">
+            </div>
+            <div class="tab-pane fade" id="about">
+            </div>
+        </div>
         <!-- #endregion -->
 
 

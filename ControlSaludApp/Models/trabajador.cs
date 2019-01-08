@@ -27,5 +27,6 @@ namespace ControlSaludApp.Models
         public string usuario { get; set; }
         public string contraseña { get; set; }
         public string LoginErrorMessagge { get; internal set; }
+
     }
 }
